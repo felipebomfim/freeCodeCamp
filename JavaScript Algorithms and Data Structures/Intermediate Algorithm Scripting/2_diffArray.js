@@ -6,18 +6,42 @@ Note: You can return the array with its elements in any order.
 
 */
 
-function diffArray(arr1, arr2) {
-    const newArr = [];
-    let arrays = [arr1, arr2];
+// function diffArray(arr1, arr2) {
+//     const newArr = [];
+//     let arrays = [arr1, arr2];
     
-    for (let i=0; i<2; i++)
-      for (let j=0; j<arrays[i].length; j++){
-        if(arrays[(i+1)%2].indexOf(arrays[i][j]) === -1)
-          newArr.push(arrays[i][j]);
-      }
+//     for (let i=0; i<2; i++)
+//       for (let j=0; j<arrays[i].length; j++){
+//         if(arrays[(i+1)%2].indexOf(arrays[i][j]) === -1)
+//           newArr.push(arrays[i][j]);
+//       }
   
   
-    return newArr;
+//     return newArr;
+//   }
+
+function diffArray(arr1, arr2) {
+  const newArr = [];
+  for (let el of arr2){
+    // console.log(el);
+    if (!isInArray(el,arr1)){
+      newArr.push(el);
+      console.log(typeof(el));
+    }
   }
+  for (let el of arr1){
+    if (!isInArray(el,arr2))
+      newArr.push(el);
+  }
+  return newArr;
+}
+
+function isInArray(input, arr){
+  for (let el of arr){
+    if (el === input)
+      return true;
+  }
+  return false;
+}
   
-  diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));

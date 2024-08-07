@@ -13,24 +13,36 @@ last: "Capulet" }, then you must return the third object from the array (the fir
 because it contains the name and its value, that was passed on as the second argument.
 
 */
+// function whatIsInAName(collection, source) {
+//     const arr = [];
+//     // Only change code below this line
+//     let isInName = true;
+//     for  (let i=0; i<collection.length; i++){
+//       isInName = true;
+//       for (let property in source){
+//         if (collection[i][property] !== source[property]){
+//           isInName = false;
+//           break;
+//         }
+//       }
+//       if(isInName)
+//         arr.push(collection[i])
+//     }
+  
+//     // Only change code above this line
+//     return arr;
+//   }
+
 function whatIsInAName(collection, source) {
-    const arr = [];
-    // Only change code below this line
-    let isInName = true;
-    for  (let i=0; i<collection.length; i++){
-      isInName = true;
-      for (let property in source){
-        if (collection[i][property] !== source[property]){
-          isInName = false;
-          break;
-        }
-      }
-      if(isInName)
-        arr.push(collection[i])
+  collection = collection.filter((name)=>{
+    for (let field in source){
+      if (name[field] != source[field])
+        return false;
     }
-  
-    // Only change code above this line
-    return arr;
-  }
-  
-  console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }));
+    return true;
+  });
+  return collection;
+}
+
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+console.log(whatIsInAName([{"a": 1, "b": 2, "c": 3, "d": 9999}], {"a": 1, "b": 9999, "c": 3}));
